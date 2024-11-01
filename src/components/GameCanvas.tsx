@@ -114,7 +114,6 @@ const GameCanvas: React.FC = () => {
             }
           }
 
-          // Remove a bala se ela exceder a distância máxima
           if (bullet.distanceTraveled >= bullet.maxDistance) {
             this.bullets.splice(i, 1);
           }
@@ -240,8 +239,6 @@ const GameCanvas: React.FC = () => {
       mouseDown: boolean;
 
       constructor({
-        x,
-        y,
         rotation,
         heafth,
         maxHeafth,
@@ -249,8 +246,8 @@ const GameCanvas: React.FC = () => {
         maxRange,
         state
       }: CannonProps) {
-        this.x = x;
-        this.y = y;
+        this.x = window.innerWidth / 2;
+        this.y = window.innerHeight / 2;
         this.rotation = rotation;
         this.heafth = heafth;
         this.maxHeafth = maxHeafth;
@@ -296,8 +293,8 @@ const GameCanvas: React.FC = () => {
       }
 
       draw(ctx: CanvasRenderingContext2D) {
-        const x = this.x;
-        const y = this.y;
+        const x = this.x = window.innerWidth / 2;
+        const y = this.y = window.innerHeight / 2;
         const rotation = this.rotation;
         const maxRange = this.maxRange
         this.percent = (this.heafth - this.maxHeafth / 100) + 1;
@@ -480,8 +477,8 @@ const GameCanvas: React.FC = () => {
     }
 
     const cannon = new Cannon({
-      x: canvas.width / 2,
-      y: canvas.height / 2,
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
       color: 'white',
       rotation: 0,
       heafth: 100,
@@ -637,7 +634,7 @@ const GameCanvas: React.FC = () => {
     };
   }, []);
 
-  return <canvas ref={canvasRef} style={{ backgroundColor: 'grey' }} />;
+  return <canvas ref={canvasRef} style={{ backgroundColor: 'grey' }} width={window.innerWidth} height={window.innerHeight} />;
 };
 
 export default GameCanvas;
